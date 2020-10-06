@@ -4,15 +4,8 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
-/* This seems to be a utility class with IO methods. Probably they can be
-moved to the GameStarter class at some point, because this class doesn't
-need to have state at all. Alternatively you could try to make a static
-import of this class in the GameStarter class. */
+// A utility class with three IO methods.
 public class InputOutput {
-
-    public static String clString() {
-        return "";
-    }
 
     public static int clInt() {
         Scanner sc = new Scanner(System.in);
@@ -22,11 +15,10 @@ public class InputOutput {
     public static int drawSticks(String question) {
         System.out.println(question);
         int drawSticks;
-        // return 1;
         return clInt();
     }
 
-    public static void returnSticks(int sticks) {
+    public static void displaySticks(int sticks) {
         char[] myArray = new char[sticks];
         int i = 5;
         Arrays.fill(myArray, '|');

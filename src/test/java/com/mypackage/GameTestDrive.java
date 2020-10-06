@@ -2,7 +2,7 @@ package com.mypackage;
 
 import java.io.IOException;
 
-public class GameStarterTestDrive {
+public class GameTestDrive {
 
     public static void main(String... kong) {
         Game game = new Game();

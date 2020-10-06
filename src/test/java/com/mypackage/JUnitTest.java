@@ -10,10 +10,9 @@ import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
 
-// @RunWith(Parameterized.class)
 public class JUnitTest {
 
-    String expectedWinner = "Player 2 won.";
+    String expectedWinner = "Player2 won.";
 
     @Test
     public void getWinner() {
