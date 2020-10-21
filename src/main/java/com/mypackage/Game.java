@@ -4,8 +4,17 @@ import java.util.Random;
 
 import static com.mypackage.InputOutput.*;
 
-/* This class contains the major part of the domain logic because
- * it checks whether the input is according to the rules of the game.
+/* David: the "API" of the core business logic should be like:
+ * * create new game, eventually through the constructor
+ * * player interacts and makes a move
+ * * who is next?
+ * * what status does the game have? (Ongoing, finished, who won)
+ * Make sure that the API has low coupling with the "viewer" as
+ * well as with the persistence.
+ * Afterwards, you can test the logic without interfering with
+ * persistence and viewer. A test would be like: this is the
+ * gameState, these are the actions of the players => this
+ * is the expected new gameState.
  */
 public class Game {
 
@@ -14,8 +23,11 @@ public class Game {
 
     // Constructor.
     public Game() {
-        var rand = new Random();
-        gameState = rand.nextInt(21) + 5;
+        this(new Random().nextInt(21) + 5);
+    }
+
+    public Game(int sticks) {
+        gameState = sticks;
         System.out.println("Welcome! Two players alternatingly take sticks from a heap.\n"
                 + "The player who has to take the last stick looses the game. The number\n"
                 + "of sticks to be taken has to equal a perfect square. Player 1 starts!");
@@ -61,6 +73,9 @@ public class Game {
 
         private int checkInput() {
             String str = "";
+            /* David: try to avoid, that you have this kind of coupling
+             * between two classes.
+             */
             int number = askQuestion();
             if (number >= x)
                 str = "The number is greater than the amount of remaining sticks.\n";
@@ -74,6 +89,9 @@ public class Game {
             return x;
         }
 
+        /* David: try to avoid, that you have this kind of coupling
+         * between two classes.
+         */
         public int askQuestion() {
             return drawSticks(player + " : " + "How many sticks would you like to take?");
         }
