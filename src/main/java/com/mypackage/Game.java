@@ -7,48 +7,46 @@ import java.util.Random;
  * * player interacts and makes a move
  * * who is next?
  * * what status does the game have? (Ongoing, finished, who won)
- * Make sure that the API has low coupling with the "viewer" as
- * well as with the persistence.
- * Afterwards, you can test the logic without interfering with
- * persistence and viewer.
  */
 public class Game {
 
-    private boolean gameOver;
     private int sticksLeft;
+    private InputOutput myIO = new InputOutput();
 
     {
         System.out.println("Welcome! Two players alternatingly take sticks from a heap.\n"
-                + "The player who has to take the last stick looses the game. The number\n"
-                + "of sticks to be taken has to equal a perfect square. Player 1 starts!");
+                + "Player 1 starts!");
     }
 
-    // For testing purpose.
     public Game() {
         this(new Random().nextInt(21) + 5);
+    }
+
+    public void setMyIO(InputOutput myIO) {
+        this.myIO = myIO;
     }
 
     public Game(int sticks) {
         sticksLeft = sticks;
     }
 
-    public boolean runGame() {
-        new InputOutput().displaySticks(sticksLeft);
+    public boolean player2Won() {
+        myIO.displaySticks(sticksLeft);
         boolean player1 = true;
         while (sticksLeft > 1) {
-            Player player = new Player(player1, sticksLeft);
-            player.makeMove();
-            sticksLeft = player.getSticksLeft();
+            Round round = new Round(myIO, player1, sticksLeft);
+            round.makeMove();
+            sticksLeft = round.getSticksLeft();
             player1 = !player1;
         }
         return player1;
     }
 
     public static void main(String... kong) {
-        Game game = new Game(16);
         while (true) {
+            Game game = new Game(20);
             InputOutput myIO = new InputOutput();
-            myIO.announceWinner(game.runGame());
+            myIO.announceWinner(game.player2Won());
             if (!myIO.playAgain())
                 break;
         }

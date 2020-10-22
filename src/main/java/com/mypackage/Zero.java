@@ -7,11 +7,11 @@ public class Zero implements Prompt {
     public Zero(int sticks) {
         this.sticks = sticks;
     }
-    public String writePrompt(Logic logic) {
+    public String createPrompt(Round round) {
         if (sticks == 0) {
-            logic.setPrompt(new Zero(sticks));
+            round.setPrompt(new Zero(sticks));
             return "You typed zero. Try again.";
         }
-        return new TooLarge().writePrompt(logic);
+        return new TooLarge().createPrompt(round);
     }
 }

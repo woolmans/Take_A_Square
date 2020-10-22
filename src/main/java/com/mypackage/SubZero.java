@@ -8,12 +8,12 @@ public class SubZero implements Prompt {
         this.sticks = sticks;
     }
 
-    public String writePrompt(Logic logic) {
+    public String createPrompt(Round round) {
         if (sticks < 0) {
-            logic.setPrompt(new SubZero(sticks));
+            round.setPrompt(new SubZero(sticks));
             return "You chose a number below zero. Try again.";
         }
         Zero zero = new Zero(sticks);
-        return zero.writePrompt(logic);
+        return zero.createPrompt(round);
     }
 }

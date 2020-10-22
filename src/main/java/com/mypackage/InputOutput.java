@@ -23,9 +23,9 @@ public class InputOutput {
 
     public void announceWinner(boolean player1) {
         if (player1)
-            System.out.println("Player 2 won!");
+            System.out.println("Player 2 won!\n");
         else
-            System.out.println("Player 1 won!");
+            System.out.println("Player 1 won!\n");
     }
 
     public void displaySticks(int sticks) {

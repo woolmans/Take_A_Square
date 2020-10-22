@@ -8,9 +8,8 @@ import static org.mockito.Mockito.*;
 
 public class JUnitTest {
 
-    Player rx;
-    Player ry;
-    Logic newLog;
+    Round newRound;
+    Game newGame;
     InputOutput myIO = Mockito.mock(InputOutput.class);
 
     public JUnitTest() {
@@ -18,11 +17,19 @@ public class JUnitTest {
 
     @Test
     public void makeMove() {
-        newLog = new Logic(myIO, 20);
+        newRound = new Round(myIO, true, 20);
         when(myIO.clInt()).thenReturn(4);
-        newLog.makeMove();
-        assertEquals(16, newLog.getSticksLeft());
+        newRound.makeMove();
+        assertEquals(16, newRound.getSticksLeft());
         verify(myIO).clInt();
     }
 
+    @Test
+    public void getWinner() {
+        newGame = new Game(19);
+        newGame.setMyIO(myIO);
+        when(myIO.clInt()).thenReturn(1);
+        assertEquals(true, newGame.player2Won());
+        verify(myIO, atLeast(1)).clInt();
+    }
 }
