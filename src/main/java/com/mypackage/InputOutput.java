@@ -1,24 +1,34 @@
 package com.mypackage;
 
-import java.io.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
-// A utility class with three IO methods.
 public class InputOutput {
 
-    public static int clInt() {
+    public int clInt() {
         Scanner sc = new Scanner(System.in);
         return Integer.parseInt(sc.nextLine());
     }
 
-    public static int drawSticks(String question) {
-        System.out.println(question);
-        int drawSticks;
-        return clInt();
+    public void printToCI(String str) {
+        System.out.println(str);
     }
 
-    public static void displaySticks(int sticks) {
+    public void announcePlayer(boolean player1) {
+        if (player1)
+            System.out.print("Player 1: ");
+        else
+            System.out.print("Player 2: ");
+    }
+
+    public void announceWinner(boolean player1) {
+        if (player1)
+            System.out.println("Player 2 won!");
+        else
+            System.out.println("Player 1 won!");
+    }
+
+    public void displaySticks(int sticks) {
         char[] myArray = new char[sticks];
         int i = 5;
         Arrays.fill(myArray, '|');
@@ -35,6 +45,12 @@ public class InputOutput {
             System.out.println(" (" + sticks + " sticks left.)");
         else
             System.out.println(" (" + sticks + " stick left.)");
+    }
+
+    public boolean playAgain() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Do you want to play again?\nType Y/N: ");
+        return sc.next().toLowerCase().equals("y");
     }
 
 }
