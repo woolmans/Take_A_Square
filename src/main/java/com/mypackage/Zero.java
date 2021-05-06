@@ -10,7 +10,7 @@ public class Zero implements Prompt {
     public String createPrompt(Round round) {
         if (sticks == 0) {
             round.setPrompt(new Zero(sticks));
-            return "You typed zero. Try again.";
+            return "You typed letters, zero or just return (↵). Try again.";
         }
         return new TooLarge().createPrompt(round);
     }
