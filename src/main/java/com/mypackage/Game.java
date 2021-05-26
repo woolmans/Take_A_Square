@@ -2,11 +2,11 @@ package com.mypackage;
 
 import java.util.Random;
 
-/* David: the "API" of the core business logic should be like:
- * * create new game, eventually through the constructor
- * * player interacts and makes a move
- * * who is next?
- * * what status does the game have? (Ongoing, finished, who won)
+/* The "API" of the core business logic should be like:
+ * create new game, eventually through the constructor
+ * player interacts and makes a move
+ * who is next?
+ * what status does the game have? (Ongoing, finished, who won)
  */
 public class Game {
 
