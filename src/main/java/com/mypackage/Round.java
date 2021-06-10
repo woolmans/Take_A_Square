@@ -1,8 +1,11 @@
 package com.mypackage;
 
+import com.mypackage.state.*;
+import com.mypackage.state.PerfectSquare;
+
 public class Round {
 
-    private Prompt prompt = new NotASquare();
+    private State state = new NotASquare();
     private int sticksLeft;
     final InputOutput myIO;
 
@@ -13,27 +16,31 @@ public class Round {
     }
 
     void makeMove() {
-        while (this.prompt.getClass() != PerfectSquare.class) {
-            int number = myIO.clInt();
-            if (number > 0 && number < sticksLeft)
-                isPerfectSquare(number);
-            else
-                prompt = new SubZero(number);
-            myIO.printToCI(prompt.createPrompt(this));
+        while (!PerfectSquare.class.equals(this.state.getClass())) {
+            checkForPerfectSquare();
+            myIO.printToCl(state.createPrompt(this));
         }
         myIO.displaySticks(sticksLeft);
+    }
+
+    private void checkForPerfectSquare() {
+        int number = myIO.clInt();
+        if (number > 0 && number < sticksLeft)
+            isPerfectSquare(number);
+        else
+            state = new SubZero(number);
     }
 
     void isPerfectSquare(double x) {
         double sr = Math.sqrt(x);
         if ((sr - Math.floor(sr)) == 0) {
             sticksLeft -= x;
-            prompt = new PerfectSquare();
+            state = new PerfectSquare();
         }
     }
 
-    void setPrompt(Prompt newPrompt) {
-        prompt = newPrompt;
+    public void setPrompt(State newState) {
+        state = newState;
     }
 
     public int getSticksLeft() {

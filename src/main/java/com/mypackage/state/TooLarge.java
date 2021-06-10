@@ -1,6 +1,8 @@
-package com.mypackage;
+package com.mypackage.state;
 
-public class TooLarge implements Prompt {
+import com.mypackage.Round;
+
+public class TooLarge implements State {
 
     public TooLarge() {
     }

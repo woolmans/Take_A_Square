@@ -7,6 +7,8 @@ import java.util.Random;
  * player interacts and makes a move
  * who is next?
  * what status does the game have? (Ongoing, finished, who won)
+ * Remark from Günter: The business logic should be instantiated only once,
+ * whereas the persistence entities can be instantiated several times.
  */
 public class Game {
 

@@ -10,7 +10,7 @@ public class InputOutput {
         return Integer.parseInt(sc.nextLine());
     }
 
-    public void printToCI(String str) {
+    public void printToCl(String str) {
         System.out.println(str);
     }
 

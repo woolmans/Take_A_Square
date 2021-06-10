@@ -1,6 +1,8 @@
-package com.mypackage;
+package com.mypackage.state;
 
-class NotASquare implements Prompt {
+import com.mypackage.Round;
+
+public class NotASquare implements State {
 
     public NotASquare() {
     }

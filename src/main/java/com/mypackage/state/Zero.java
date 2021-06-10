@@ -1,6 +1,8 @@
-package com.mypackage;
+package com.mypackage.state;
 
-public class Zero implements Prompt {
+import com.mypackage.Round;
+
+public class Zero implements State {
 
     private int sticks;
 
